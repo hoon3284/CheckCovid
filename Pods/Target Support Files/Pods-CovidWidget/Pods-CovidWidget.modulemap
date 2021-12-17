@@ -1,6 +1,0 @@
-framework module Pods_CovidWidget {
-  umbrella header "Pods-CovidWidget-umbrella.h"
-
-  export *
-  module * { export * }
-}

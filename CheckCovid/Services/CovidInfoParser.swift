@@ -25,7 +25,13 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         return dateFormatter
     }()
-    
+    var queryDateFormatter = { () -> DateFormatter in
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        return dateFormatter
+    }()
+
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
 //        print("didStartElement -> elementName: \(elementName), namespaceURI: \(namespaceURI ?? "nil"), qualifiedName: \(qName ?? "nil"), attributeDict: \(attributeDict)")
         switch elementName {

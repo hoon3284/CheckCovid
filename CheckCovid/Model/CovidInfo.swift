@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CovidInfo: CustomStringConvertible {
+struct CovidInfo: CustomStringConvertible, Codable {
     var seq: Int            // 게시글 번호
     var createDt: Date      // 등록일시분초
     var deathCnt: Int       // 사망자 수
@@ -23,7 +23,7 @@ struct CovidInfo: CustomStringConvertible {
     
     static let dateFormatter = { () -> DateFormatter in
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        dateFormatter.dateFormat = "MM월 dd일"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         dateFormatter.locale = Locale(identifier: "ko_KR")
         return dateFormatter

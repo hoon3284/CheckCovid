@@ -21,18 +21,15 @@ struct Provider: TimelineProvider {
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let entry: SimpleEntry
-        if let data = UserDefaults.shared.value(forKey: "DailyTotal") as? Data, let totalInfo = try? JSONDecoder().decode(CovidInfo.self, from: data) {
-            entry = SimpleEntry(date: totalInfo.standardDay, totalInfo: totalInfo)
+        
+        if let dailyTotalInfo = DailyCovidInfo.dailyTotalInfo {
+            entry = SimpleEntry(date: dailyTotalInfo.standardDay, totalInfo: dailyTotalInfo)
         } else {
             entry = SimpleEntry(date: Date(), totalInfo: nil)
         }
-        entries.append(entry)
 
-        let timeline = Timeline(entries: entries, policy: .never)
+        let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
     }
 }
@@ -47,7 +44,7 @@ struct CovidWidgetEntryView : View {
 
     var body: some View {
         VStack {
-            Text(CovidInfo.dateFormatter.string(from: entry.totalInfo?.standardDay ?? Date()))
+            Text(DailyCovidInfo.dateFormatter.string(from: entry.totalInfo?.standardDay ?? Date()))
                 .font(.title2)
             Text("총 확진자")
                 .font(.title2)

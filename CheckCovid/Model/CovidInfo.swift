@@ -21,15 +21,29 @@ struct CovidInfo: CustomStringConvertible, Codable {
     var overFlowCnt: Int    // 해외유입 수
     var localOccCnt: Int    // 지역발생 수
     
-    static let dateFormatter = { () -> DateFormatter in
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM월 dd일"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        return dateFormatter
-    }()
-    
     var description: String {
         return "(\(gubun),\(gubunEn)) - 총 확진자: \(defCnt), 해외 유입 수: \(overFlowCnt), 지역 발생 수: \(localOccCnt), 사망자 수: \(deathCnt), 증감 수: \(incDec))"
     }
+}
+
+enum CovidInfoCategory: String, CaseIterable {
+    case lazaretto = "Lazaretto"
+    case jeju = "Jeju"
+    case gyeongsangnamdo = "Gyeongsangnam-do"
+    case gyeongsangbukdo = "Gyeongsangbuk-do"
+    case jeollanamdo = "Jeollanam-do"
+    case jeollabukdo = "Jeollabuk-do"
+    case chungcheoungnamdo = "Chungcheongnam-do"
+    case chungcheoungbukdo = "Chungcheongbuk-do"
+    case gangwondo = "Gangwon-do"
+    case gyeonggido = "Gyeonggi-do"
+    case sejong = "Sejong"
+    case ulsan = "Ulsan"
+    case daejeon = "Daejeon"
+    case gwangju = "Gwangju"
+    case incheon = "Incheon"
+    case daegu = "Daegu"
+    case busan = "Busan"
+    case seoul = "Seoul"
+    case total = "Total"
 }

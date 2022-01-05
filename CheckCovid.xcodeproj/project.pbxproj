@@ -187,7 +187,7 @@
 			children = (
 				B5BDFD812765563900F55281 /* Main.storyboard */,
 				B5AB19AF276CC858001EEB1B /* Model */,
-				B5D13B3A277CE82F00C50DAB /* Controllers */,
+				B5D13B3A277CE82F00C50DAB /* Controller */,
 				B5AB19B1276CC89F001EEB1B /* Services */,
 				B5AB19B0276CC87D001EEB1B /* Supporting Files */,
 				B5BDFD892765563A00F55281 /* Info.plist */,
@@ -196,13 +196,13 @@
 			path = CheckCovid;
 			sourceTree = "<group>";
 		};
-		B5D13B3A277CE82F00C50DAB /* Controllers */ = {
+		B5D13B3A277CE82F00C50DAB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				B5BDFD7F2765563900F55281 /* ViewController.swift */,
 				B5A1F830278469640004E222 /* GubunTableViewCell.swift */,
 			);
-			path = Controllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		CA2CD204E807B582B8EBF85E /* Frameworks */ = {

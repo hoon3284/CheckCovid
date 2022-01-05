@@ -8,11 +8,12 @@
 import Foundation
 
 class DailyCovidInfo {
-    var dailyInfos: [String: CovidInfo]
+    var dailyInfos: [CovidInfo]
+    var dailyInfoDict = [String: CovidInfo]()
     
     static let dateFormatter = { () -> DateFormatter in
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM월 dd일"
+        dateFormatter.dateFormat = "M월 d일"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         dateFormatter.locale = Locale(identifier: "ko_KR")
         return dateFormatter
@@ -20,6 +21,8 @@ class DailyCovidInfo {
     
     static var dailyTotalInfo: CovidInfo? {
         set {
+            guard newValue != nil else { return }
+            
             let data = try? JSONEncoder().encode(newValue)
             
             UserDefaults.shared.setValue(data, forKey: "DailyTotal")
@@ -36,12 +39,11 @@ class DailyCovidInfo {
     }
     
     init(dailyInfos items: [CovidInfo]) {
-        dailyInfos = [:]
-        for gubunEn in CovidInfoCategory.allCases {
-            for item in items {
-                if item.gubunEn == gubunEn.rawValue {
-                    dailyInfos[gubunEn.rawValue] = item
-                }
+        dailyInfos = items
+        
+        for item in items {
+            if let category = CovidInfoCategory(rawValue: item.gubunEn) {
+                dailyInfoDict[category.rawValue] = item
             }
         }
     }

@@ -9,7 +9,9 @@ import Foundation
 
 class CovidInfoParser: NSObject, XMLParserDelegate {
     static let shared = CovidInfoParser()
-    
+
+    var resultCode = ""
+    var resultMsg = ""
     var items: [CovidInfo] = []
     var xmlDictionary: [String: String]?
     var crtElementType: XMLKey?
@@ -33,7 +35,6 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
     }()
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-//        print("didStartElement -> elementName: \(elementName), namespaceURI: \(namespaceURI ?? "nil"), qualifiedName: \(qName ?? "nil"), attributeDict: \(attributeDict)")
         switch elementName {
         case "item":
             xmlDictionary = [:]
@@ -61,17 +62,26 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
             crtElementType = .overFlowCnt
         case XMLKey.localOccCnt.rawValue:
             crtElementType = .localOccCnt
+        case XMLKey.resultCode.rawValue:
+            crtElementType = .resultCode
+        case XMLKey.resultMsg.rawValue:
+            crtElementType = .resultMsg
         default:
             break
         }
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-//        print("foundCharacters -> string: \(string)")
-        guard xmlDictionary != nil, let crtElementType = self.crtElementType else {
-//            print("xmlDict nil, crtElement nil")
-            return
+        guard let crtElementType = self.crtElementType else { return }
+        
+        if crtElementType == XMLKey.resultCode {
+            resultCode = string
+        } else if crtElementType == XMLKey.resultMsg {
+            resultMsg = string
         }
+        
+        guard xmlDictionary != nil else { return }
+        
         if crtElementType.rawValue == XMLKey.standardDay.rawValue {
             xmlDictionary?[crtElementType.rawValue, default: ""] += string
         } else {
@@ -80,11 +90,8 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-//        print("didEndElement -> elementName: \(elementName), namespaceURI: \(namespaceURI ?? "nil"), qualifiedName: \(qName ?? "nil")")
-        guard let xmlDictionary = self.xmlDictionary else {
-//            print("xmlDict nil")
-            return
-        }
+        guard let xmlDictionary = self.xmlDictionary else { return }
+        
         if elementName == "item" {
             guard let seq = xmlDictionary[XMLKey.seq.rawValue],
                   let createDt = xmlDictionary[XMLKey.createDt.rawValue],
@@ -114,6 +121,8 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
     }
     
     enum XMLKey: String {
+        case resultCode             // 결과 코드
+        case resultMsg              // 결과 메세지
         case seq                    // 게시글 번호
         case createDt               // 등록일시분초
         case deathCnt               // 사망자 수

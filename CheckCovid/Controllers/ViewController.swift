@@ -8,47 +8,85 @@
 import UIKit
 import WidgetKit
 
-class ViewController: UIViewController {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // viewModel이라고는 했지만 Model에 가까우므로 추후 수정할 예정.
-    var viewModel: DailyCovidInfo?
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var model: DailyCovidInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         update()
     }
     
     func update() {
         DailyInfoRequest().send { result in
-            if case let .success(items) = result {
-                self.viewModel = DailyCovidInfo(dailyInfos: items)
+            switch result {
+            case .success(let items):
+                self.model = DailyCovidInfo(dailyInfos: items)
+                DailyCovidInfo.dailyTotalInfo = self.model!.dailyInfoDict[CovidInfoCategory.total.rawValue]
                 
-                DailyCovidInfo.dailyTotalInfo = self.viewModel!.dailyInfos[CovidInfoCategory.total.rawValue]
+                DispatchQueue.main.async {
+                    // Widget 새로고침도 UI라서 백그라운드에서는 안되는 것 같다.
+                    WidgetCenter.shared.reloadTimelines(ofKind: "com.wickedrun.CheckCovid")
+                    self.updateView()
+                }
                 
-                WidgetCenter.shared.reloadTimelines(ofKind: "CovidWidget")
-            }
-            
-            DispatchQueue.main.async {
-                self.updateView()
+            case .failure(let error):
+                let errorCode: String
+                if let apiError = error as? APIError {
+                    errorCode = apiError.rawValue
+                } else {
+                    errorCode = error.localizedDescription
+                }
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "데이터를 불러오지 못 했습니다.\n에러코드: \(errorCode)", message: nil, preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "확인", style: .cancel) { result in
+                        exit(0)
+                    }
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
         }
     }
     
     func updateView() {
-        guard let viewModel = viewModel else {
-            textView.text = "데이터를 불러오지 못 했습니다."
-            return
-        }
+        guard let model = model else { return }
+
         // 임시 view 설정
-        let total = viewModel.dailyInfos[CovidInfoCategory.total.rawValue]!
-        titleLabel.text! += "\n" + DailyCovidInfo.dateFormatter.string(from: total.standardDay)
+        let total = model.dailyInfoDict[CovidInfoCategory.total.rawValue]!
+        updateTotalInfoView(with: total)
         
-        for info in viewModel.dailyInfos {
-            textView.text += info.value.description + "\n"
-        }
+        tableView.reloadData()
     }
+    
+    func updateTotalInfoView(with total: CovidInfo) {
+        titleLabel.text! = DailyCovidInfo.dateFormatter.string(from: total.standardDay)
+    }
+    
+    // MARK: DataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let model = model else { return 0 }
+
+        return model.dailyInfos.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let model = model,
+              let cell = tableView.dequeueReusableCell(withIdentifier: "gubunCell") as? GubunTableViewCell
+        else {
+            fatalError("identifier에 해당하는 셀이 없습니다.")
+        }
+        cell.titleLabel.text = model.dailyInfos[indexPath.row].gubun
+        
+        return cell
+    }
+    
 }
 

@@ -58,7 +58,7 @@ struct CovidWidgetEntryView : View {
 
 @main
 struct CovidWidget: Widget {
-    let kind: String = "CovidWidget"
+    let kind: String = "com.wickedrun.CheckCovid"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in

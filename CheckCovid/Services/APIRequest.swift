@@ -42,12 +42,21 @@ extension APIRequest {
 extension APIRequest where Response == [CovidInfo] {
     func send(completion: @escaping (Result<Response, Error>) -> Void) {
         URLSession.shared.dataTask(with: request) { (data, _, error) in
+            let nomalServiceCode = "00"
+            
             if let data = data {
                 let parser = XMLParser(data: data)
                 parser.delegate = CovidInfoParser.shared
                 parser.parse()
-                let items = CovidInfoParser.shared.items
-                completion(.success(items))
+                
+                let resultCode = CovidInfoParser.shared.resultCode
+                if resultCode == nomalServiceCode {
+                    let items = CovidInfoParser.shared.items
+                    completion(.success(items))
+                } else {
+                    let apiError = APIError(rawValue: resultCode)
+                    completion(.failure(apiError!))
+                }
             } else if let error = error {
                 completion(.failure(error))
             }

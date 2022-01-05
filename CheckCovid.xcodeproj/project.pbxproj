@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		3CC1905B7BC9E1CF41E2D63B /* Pods_CheckCovid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F489BF04E534D90338DBDA /* Pods_CheckCovid.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		B5141C952784E2C300482405 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5141C942784E2C300482405 /* APIError.swift */; };
 		B596CD14276DD503006E449C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B596CD13276DD503006E449C /* WidgetKit.framework */; };
 		B596CD16276DD503006E449C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B596CD15276DD503006E449C /* SwiftUI.framework */; };
 		B596CD19276DD503006E449C /* CovidWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596CD18276DD503006E449C /* CovidWidget.swift */; };
 		B596CD1C276DD504006E449C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B596CD1B276DD504006E449C /* Assets.xcassets */; };
 		B596CD1E276DD504006E449C /* CovidWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B596CD1A276DD503006E449C /* CovidWidget.intentdefinition */; };
+		B5A1F831278469640004E222 /* GubunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A1F830278469640004E222 /* GubunTableViewCell.swift */; };
 		B5AB19A5276B9BAF001EEB1B /* CovidInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AB19A4276B9BAF001EEB1B /* CovidInfo.plist */; };
 		B5AB19A7276B9F14001EEB1B /* CheckCovid+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB19A6276B9F14001EEB1B /* CheckCovid+Bundle.swift */; };
 		B5AB19B3276CC957001EEB1B /* CovidInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB19B2276CC957001EEB1B /* CovidInfoParser.swift */; };
@@ -27,7 +29,6 @@
 		B5D13B38277CE1B100C50DAB /* DailyCovidInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D13B36277CE05C00C50DAB /* DailyCovidInfo.swift */; };
 		B5E8210927744C1200DFE4A3 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8210827744C1200DFE4A3 /* APIRequest.swift */; };
 		B5E8210B277473B000DFE4A3 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8210A277473B000DFE4A3 /* APIService.swift */; };
-		B5F6A1D3277F1CF80080DF0B /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6A1D2277F1CF80080DF0B /* MainCollectionViewController.swift */; };
 		B5F6AE9527721DC7002D2C05 /* CheckCovid+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6AE9427721DC7002D2C05 /* CheckCovid+UserDefaults.swift */; };
 		B5F6AE9F27723372002D2C05 /* CovidInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB19B4276CC96F001EEB1B /* CovidInfo.swift */; };
 		B5F6AEA027723C21002D2C05 /* CheckCovid+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6AE9427721DC7002D2C05 /* CheckCovid+UserDefaults.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		6CB4AF048AE9FF54136056A0 /* Pods-CheckCovid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheckCovid.release.xcconfig"; path = "Target Support Files/Pods-CheckCovid/Pods-CheckCovid.release.xcconfig"; sourceTree = "<group>"; };
 		79F489BF04E534D90338DBDA /* Pods_CheckCovid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheckCovid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5141C942784E2C300482405 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		B596CD12276DD503006E449C /* CovidWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CovidWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B596CD13276DD503006E449C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		B596CD15276DD503006E449C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -70,6 +72,7 @@
 		B596CD1A276DD503006E449C /* CovidWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CovidWidget.intentdefinition; sourceTree = "<group>"; };
 		B596CD1B276DD504006E449C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B596CD1D276DD504006E449C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5A1F830278469640004E222 /* GubunTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GubunTableViewCell.swift; sourceTree = "<group>"; };
 		B5AB19A4276B9BAF001EEB1B /* CovidInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CovidInfo.plist; sourceTree = "<group>"; };
 		B5AB19A6276B9F14001EEB1B /* CheckCovid+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckCovid+Bundle.swift"; sourceTree = "<group>"; };
 		B5AB19B2276CC957001EEB1B /* CovidInfoParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidInfoParser.swift; sourceTree = "<group>"; };
@@ -85,7 +88,6 @@
 		B5D13B36277CE05C00C50DAB /* DailyCovidInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCovidInfo.swift; sourceTree = "<group>"; };
 		B5E8210827744C1200DFE4A3 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		B5E8210A277473B000DFE4A3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		B5F6A1D2277F1CF80080DF0B /* MainCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
 		B5F6AE922771DED4002D2C05 /* CheckCovid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheckCovid.entitlements; sourceTree = "<group>"; };
 		B5F6AE932771DF16002D2C05 /* CovidWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CovidWidgetExtension.entitlements; sourceTree = "<group>"; };
 		B5F6AE9427721DC7002D2C05 /* CheckCovid+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckCovid+UserDefaults.swift"; sourceTree = "<group>"; };
@@ -128,8 +130,8 @@
 		B5AB19AF276CC858001EEB1B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B5AB19B4276CC96F001EEB1B /* CovidInfo.swift */,
 				B5D13B36277CE05C00C50DAB /* DailyCovidInfo.swift */,
+				B5AB19B4276CC96F001EEB1B /* CovidInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,6 +155,7 @@
 				B5AB19A6276B9F14001EEB1B /* CheckCovid+Bundle.swift */,
 				B5E8210827744C1200DFE4A3 /* APIRequest.swift */,
 				B5E8210A277473B000DFE4A3 /* APIService.swift */,
+				B5141C942784E2C300482405 /* APIError.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -182,30 +185,22 @@
 		B5BDFD7A2765563900F55281 /* CheckCovid */ = {
 			isa = PBXGroup;
 			children = (
-				B5F6AE922771DED4002D2C05 /* CheckCovid.entitlements */,
-				B5AB19AF276CC858001EEB1B /* Model */,
-				B5D13B35277CE03800C50DAB /* ViewModel */,
-				B5D13B3A277CE82F00C50DAB /* Controllers */,
 				B5BDFD812765563900F55281 /* Main.storyboard */,
+				B5AB19AF276CC858001EEB1B /* Model */,
+				B5D13B3A277CE82F00C50DAB /* Controllers */,
 				B5AB19B1276CC89F001EEB1B /* Services */,
 				B5AB19B0276CC87D001EEB1B /* Supporting Files */,
 				B5BDFD892765563A00F55281 /* Info.plist */,
+				B5F6AE922771DED4002D2C05 /* CheckCovid.entitlements */,
 			);
 			path = CheckCovid;
-			sourceTree = "<group>";
-		};
-		B5D13B35277CE03800C50DAB /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B5D13B3A277CE82F00C50DAB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				B5BDFD7F2765563900F55281 /* ViewController.swift */,
-				B5F6A1D2277F1CF80080DF0B /* MainCollectionViewController.swift */,
+				B5A1F830278469640004E222 /* GubunTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -394,8 +389,9 @@
 				B5BDFD802765563900F55281 /* ViewController.swift in Sources */,
 				B5AB19A7276B9F14001EEB1B /* CheckCovid+Bundle.swift in Sources */,
 				B5F6AE9527721DC7002D2C05 /* CheckCovid+UserDefaults.swift in Sources */,
-				B5F6A1D3277F1CF80080DF0B /* MainCollectionViewController.swift in Sources */,
+				B5141C952784E2C300482405 /* APIError.swift in Sources */,
 				B5BDFD7C2765563900F55281 /* AppDelegate.swift in Sources */,
+				B5A1F831278469640004E222 /* GubunTableViewCell.swift in Sources */,
 				B5E8210927744C1200DFE4A3 /* APIRequest.swift in Sources */,
 				B5D13B37277CE05C00C50DAB /* DailyCovidInfo.swift in Sources */,
 				B5E8210B277473B000DFE4A3 /* APIService.swift in Sources */,

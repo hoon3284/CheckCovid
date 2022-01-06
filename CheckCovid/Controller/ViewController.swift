@@ -32,20 +32,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 DailyCovidInfo.dailyTotalInfo = self.model!.dailyInfoDict[CovidInfoCategory.total.rawValue]
                 
                 DispatchQueue.main.async {
-                    // Widget 새로고침도 UI라서 백그라운드에서는 안되는 것 같다.
                     WidgetCenter.shared.reloadTimelines(ofKind: "com.wickedrun.CheckCovid")
                     self.updateView()
                 }
                 
             case .failure(let error):
-                let errorCode: String
+                let errorMsg: String
                 if let apiError = error as? APIError {
-                    errorCode = apiError.rawValue
+                    errorMsg = apiError.name
                 } else {
-                    errorCode = error.localizedDescription
+                    errorMsg = error.localizedDescription
                 }
                 DispatchQueue.main.async {
-                    let alertController = UIAlertController(title: "데이터를 불러오지 못 했습니다.\n에러코드: \(errorCode)", message: nil, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "데이터를 불러오지 못 했습니다.\n에러메시지: \(errorMsg)", message: nil, preferredStyle: .alert)
                     let cancelAction = UIAlertAction(title: "확인", style: .cancel) { result in
                         exit(0)
                     }

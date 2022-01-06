@@ -46,15 +46,19 @@ extension APIRequest where Response == [CovidInfo] {
             
             if let data = data {
                 let parser = XMLParser(data: data)
-                parser.delegate = CovidInfoParser.shared
+                let covidInfoParser = CovidInfoParser()
+                parser.delegate = covidInfoParser
                 parser.parse()
                 
-                let resultCode = CovidInfoParser.shared.resultCode
-                if resultCode == nomalServiceCode {
-                    let items = CovidInfoParser.shared.items
-                    completion(.success(items))
+                if covidInfoParser.resultCode == nomalServiceCode {
+                    let items = covidInfoParser.items
+                    if items.isEmpty, let apiError = APIError(rawValue: covidInfoParser.resultCode) {
+                        completion(.failure(apiError))
+                    } else {
+                        completion(.success(items))
+                    }
                 } else {
-                    let apiError = APIError(rawValue: resultCode)
+                    let apiError = APIError(rawValue: covidInfoParser.resultCode)
                     completion(.failure(apiError!))
                 }
             } else if let error = error {

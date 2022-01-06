@@ -8,26 +8,25 @@
 import Foundation
 
 class CovidInfoParser: NSObject, XMLParserDelegate {
-    static let shared = CovidInfoParser()
 
     var resultCode = ""
     var resultMsg = ""
     var items: [CovidInfo] = []
     var xmlDictionary: [String: String]?
     var crtElementType: XMLKey?
-    var createDateFormatter = { () -> DateFormatter in
+    static var createDateFormatter = { () -> DateFormatter in
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         return dateFormatter
     }()
-    var standardDateFormatter = { () -> DateFormatter in
+    static var standardDateFormatter = { () -> DateFormatter in
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일 HH시"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         return dateFormatter
     }()
-    var queryDateFormatter = { () -> DateFormatter in
+    static var queryDateFormatter = { () -> DateFormatter in
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
@@ -109,7 +108,9 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
                 print("Dict nil")
                 return
             }
-            guard let createDate = createDateFormatter.date(from: createDt), let standardDate = standardDateFormatter.date(from: standardDay) else {
+            guard let createDate = CovidInfoParser.createDateFormatter.date(from: createDt),
+                  let standardDate = CovidInfoParser.standardDateFormatter.date(from: standardDay)
+            else {
                 print("failed to formatting date")
                 return
             }

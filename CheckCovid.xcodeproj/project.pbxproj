@@ -151,11 +151,11 @@
 		B5AB19B1276CC89F001EEB1B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B5E8210A277473B000DFE4A3 /* APIService.swift */,
+				B5E8210827744C1200DFE4A3 /* APIRequest.swift */,
+				B5141C942784E2C300482405 /* APIError.swift */,
 				B5AB19B2276CC957001EEB1B /* CovidInfoParser.swift */,
 				B5AB19A6276B9F14001EEB1B /* CheckCovid+Bundle.swift */,
-				B5E8210827744C1200DFE4A3 /* APIRequest.swift */,
-				B5E8210A277473B000DFE4A3 /* APIService.swift */,
-				B5141C942784E2C300482405 /* APIError.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

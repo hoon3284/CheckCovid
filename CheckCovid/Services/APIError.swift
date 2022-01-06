@@ -8,11 +8,12 @@
 import Foundation
 
 enum APIError: String, Error {
-    case application = "01"                            // 어플리케이션
-    case db = "02"                                     // 데이터베이스
-    case noData = "03"                                 // 데이터 없음
-    case http = "04"                                   // HTTP
-    case serviceTimeout = "05"                         // 서비스 연결실패
+    case normalServiceButNoData = "00"                // 정상 서비스이지만 데이타가 없을때.
+    case application = "01"                           // 어플리케이션
+    case db = "02"                                    // 데이터베이스
+    case noData = "03"                                // 데이터 없음
+    case http = "04"                                  // HTTP
+    case serviceTimeout = "05"                        // 서비스 연결실패
     case invalidRequestParameter = "10"               // 잘못된 요청 파라메터
     case noMandatoryRequestParameters = "11"          // 필수요청 파라메터가 없음
     case noOpenAPIService = "12"                      // 해당 오픈 API서비스가 없거나 폐기됨
@@ -24,4 +25,8 @@ enum APIError: String, Error {
     case unregisteredIP = "32"                        // 등록되지 않은 IP
     case unsignedCall = "33"                          // 서명되지 않은 호출
     case unknown = "99"                               // 기타
+    
+    var name: String {
+        return String(describing: self)
+    }
 }

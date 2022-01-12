@@ -8,12 +8,14 @@
 import Foundation
 
 class CovidInfoParser: NSObject, XMLParserDelegate {
-
+    
     var resultCode = ""
     var resultMsg = ""
-    var items: [CovidInfo] = []
+    var dict: [String: [CovidInfo]]?
+    var items: [CovidInfo]?
     var xmlDictionary: [String: String]?
     var crtElementType: XMLKey?
+    
     static var createDateFormatter = { () -> DateFormatter in
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
@@ -33,6 +35,16 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
         return dateFormatter
     }()
 
+    init(with: Dictionary<String, [CovidInfo]>) {
+        super.init()
+        dict = with
+    }
+    
+    init(with: Array<CovidInfo>) {
+        super.init()
+        items = with
+    }
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         switch elementName {
         case "item":
@@ -115,7 +127,10 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
                 return
             }
             let item = CovidInfo(seq: Int(seq)!, createDt: createDate, deathCnt: Int(deathCnt)!, gubun: gubun, gubunEn: gubunEn, incDec: Int(incDec)!, isolClearCnt: Int(isolClearCnt)!, qurRate: Int(qurRate), standardDay: standardDate, defCnt: Int(defCnt)!, overFlowCnt: Int(overFlowCnt)!, localOccCnt: Int(localOccCnt)!)
-            items.append(item)
+            
+            dict?[item.gubunEn, default: [CovidInfo]()].append(item)
+            items?.append(item)
+            
             self.xmlDictionary = nil
         }
         crtElementType = nil

@@ -32,7 +32,6 @@
 		B5F6AE9527721DC7002D2C05 /* CheckCovid+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6AE9427721DC7002D2C05 /* CheckCovid+UserDefaults.swift */; };
 		B5F6AE9F27723372002D2C05 /* CovidInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB19B4276CC96F001EEB1B /* CovidInfo.swift */; };
 		B5F6AEA027723C21002D2C05 /* CheckCovid+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6AE9427721DC7002D2C05 /* CheckCovid+UserDefaults.swift */; };
-		B5F6AEA42772428C002D2C05 /* Pods_CheckCovid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F489BF04E534D90338DBDA /* Pods_CheckCovid.framework */; };
 		B5F6AEAA2772504F002D2C05 /* CovidWidgetExtension.appex in Resources */ = {isa = PBXBuildFile; fileRef = B596CD12276DD503006E449C /* CovidWidgetExtension.appex */; platformFilter = ios; };
 		B5F6AEAD2772506D002D2C05 /* CovidWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B596CD12276DD503006E449C /* CovidWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -100,7 +99,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B596CD16276DD503006E449C /* SwiftUI.framework in Frameworks */,
-				B5F6AEA42772428C002D2C05 /* Pods_CheckCovid.framework in Frameworks */,
 				B596CD14276DD503006E449C /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -607,7 +605,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C1CE94ED8F96764A2695677E /* Pods-CheckCovid.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CheckCovid/CheckCovid.entitlements;
@@ -638,7 +636,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6CB4AF048AE9FF54136056A0 /* Pods-CheckCovid.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CheckCovid/CheckCovid.entitlements;

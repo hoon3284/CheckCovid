@@ -25,14 +25,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func update() {
-        DailyInfoRequest().send { result in
+        WeeklyTotalInfoRequest().send { result in
             switch result {
-            case .success(let items):
-                self.model = DailyCovidInfo(dailyInfos: items)
-                DailyCovidInfo.dailyTotalInfo = self.model!.dailyInfoDict[CovidInfoCategory.total.rawValue]
+            case .success(let dict):
+                self.model = DailyCovidInfo(with: dict)
+                DailyCovidInfo.dailyTotalInfo = self.model!.dailyInfos.first { $0.gubunEn == CovidInfoCategory.total.rawValue }
                 
                 DispatchQueue.main.async {
-                    WidgetCenter.shared.reloadTimelines(ofKind: "com.wickedrun.CheckCovid")
+                    if let kind = Bundle.main.bundleIdentifier {
+                        WidgetCenter.shared.reloadTimelines(ofKind: kind)
+                    }
                     self.updateView()
                 }
                 
@@ -45,9 +47,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 DispatchQueue.main.async {
                     let alertController = UIAlertController(title: "데이터를 불러오지 못 했습니다.\n에러메시지: \(errorMsg)", message: nil, preferredStyle: .alert)
-                    let cancelAction = UIAlertAction(title: "확인", style: .cancel) { result in
-                        exit(0)
-                    }
+                    let cancelAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
                     alertController.addAction(cancelAction)
                     self.present(alertController, animated: true, completion: nil)
                 }
@@ -59,14 +59,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         guard let model = model else { return }
 
         // 임시 view 설정
-        let total = model.dailyInfoDict[CovidInfoCategory.total.rawValue]!
+        let total = model.dailyInfos.first { $0.gubunEn == CovidInfoCategory.total.rawValue }!
         updateTotalInfoView(with: total)
         
         tableView.reloadData()
     }
     
     func updateTotalInfoView(with total: CovidInfo) {
-        titleLabel.text! = DailyCovidInfo.dateFormatter.string(from: total.standardDay)
+        titleLabel.text! = model!.dateFormatter.string(from: total.standardDay)
     }
     
     // MARK: DataSource

@@ -8,10 +8,10 @@
 import Foundation
 
 class DailyCovidInfo {
+    var weeklyInfoDict: [String: [CovidInfo]]
     var dailyInfos: [CovidInfo]
-    var dailyInfoDict = [String: CovidInfo]()
     
-    static let dateFormatter = { () -> DateFormatter in
+    let dateFormatter = { () -> DateFormatter in
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M월 d일"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
@@ -38,12 +38,16 @@ class DailyCovidInfo {
         }
     }
     
-    init(dailyInfos items: [CovidInfo]) {
-        dailyInfos = items
+    init(with dict: [String: [CovidInfo]]) {
+        weeklyInfoDict = dict
+        dailyInfos = [CovidInfo]()
         
-        for item in items {
-            if let category = CovidInfoCategory(rawValue: item.gubunEn) {
-                dailyInfoDict[category.rawValue] = item
+        let today = dateFormatter.string(from: Date()-3900)
+        
+        for key in CovidInfoCategory.allCases {
+            if let infos = weeklyInfoDict[key.rawValue],
+               let info = infos.first(where: { dateFormatter.string(from: $0.standardDay) == today }) {
+                dailyInfos.append(info)
             }
         }
     }

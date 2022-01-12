@@ -8,5 +8,6 @@ target 'CheckCovid' do
   # Pods for CheckCovid
   pod 'RxSwift'
   pod 'RxCocoa'
-  
+  pod 'Charts'
+ 
 end

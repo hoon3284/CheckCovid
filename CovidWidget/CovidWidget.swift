@@ -41,10 +41,18 @@ struct SimpleEntry: TimelineEntry {
 
 struct CovidWidgetEntryView : View {
     var entry: Provider.Entry
-
+    
+    let dateFormatter = { () -> DateFormatter in
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "M월 d일"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        return dateFormatter
+    }()
+    
     var body: some View {
         VStack {
-            Text(DailyCovidInfo.dateFormatter.string(from: entry.totalInfo?.standardDay ?? Date()))
+            Text(dateFormatter.string(from: entry.totalInfo?.standardDay ?? Date()))
                 .font(.title2)
             Text("총 확진자")
                 .font(.title2)

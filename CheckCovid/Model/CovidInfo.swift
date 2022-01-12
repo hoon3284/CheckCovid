@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CovidInfo: CustomStringConvertible, Codable {
+struct CovidInfo: CustomStringConvertible, Codable, Equatable {
     var seq: Int            // 게시글 번호
     var createDt: Date      // 등록일시분초
     var deathCnt: Int       // 사망자 수
@@ -23,6 +23,10 @@ struct CovidInfo: CustomStringConvertible, Codable {
     
     var description: String {
         return "(\(gubun),\(gubunEn)) - 총 확진자: \(defCnt), 해외 유입 수: \(overFlowCnt), 지역 발생 수: \(localOccCnt), 사망자 수: \(deathCnt), 증감 수: \(incDec))"
+    }
+    
+    static func == (_ lhs: CovidInfo, _ rhs: CovidInfo) -> Bool {
+        return lhs.seq == rhs.seq
     }
 }
 

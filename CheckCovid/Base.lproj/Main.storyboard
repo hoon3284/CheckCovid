@@ -92,6 +92,9 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="300" height="140"/>
+                                        <connections>
+                                            <outlet property="barChartView" destination="Zbi-rl-kVK" id="Glh-Hi-K0A"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="DailyGubunInfoCell" id="pmC-9R-VtM" customClass="DailyGubunInfoCollectionViewCell" customModule="CheckCovid" customModuleProvider="target">
                                         <rect key="frame" x="135" y="300" width="120" height="120"/>

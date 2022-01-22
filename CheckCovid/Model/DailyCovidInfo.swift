@@ -10,6 +10,7 @@ import Foundation
 class DailyCovidInfo {
     var weeklyInfoDict: [String: [CovidInfo]]
     var dailyInfos: [CovidInfo]
+    var dailyTotal: CovidInfo!
     
     let dateFormatter = { () -> DateFormatter in
         let dateFormatter = DateFormatter()
@@ -47,7 +48,11 @@ class DailyCovidInfo {
         for key in CovidInfoCategory.allCases {
             if let infos = weeklyInfoDict[key.rawValue],
                let info = infos.first(where: { dateFormatter.string(from: $0.standardDay) == today }) {
-                dailyInfos.append(info)
+                if info.gubunEn == CovidInfoCategory.total.rawValue {
+                    dailyTotal = info
+                } else {
+                    dailyInfos.append(info)
+                }
             }
         }
     }

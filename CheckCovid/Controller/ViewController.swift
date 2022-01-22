@@ -29,12 +29,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         update()
     }
     
+    // MARK: Infomation Update
     func update() {
         WeeklyTotalInfoRequest().send { result in
             switch result {
             case .success(let dict):
                 self.model = DailyCovidInfo(with: dict)
-                DailyCovidInfo.dailyTotalInfo = self.model!.dailyInfos.first { $0.gubunEn == CovidInfoCategory.total.rawValue }
+                DailyCovidInfo.dailyTotalInfo = self.model!.dailyTotal
                 
                 DispatchQueue.main.async {
                     if let kind = Bundle.main.bundleIdentifier {
@@ -66,12 +67,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return Section.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let model = model else { return 0 }
-        if section == 2 {
+        if section == Section.DailyGubunInfo.rawValue {
             return model.dailyInfos.count
         } else {
             return 1
@@ -85,19 +86,27 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         switch section {
         case .DailyTotalInfo:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyTotalInfoCell", for: indexPath) as! DailyTotalInfoCollectionViewCell
-            if let total = model.dailyInfos.first(where: { $0.gubunEn == CovidInfoCategory.total.rawValue }) {
-                cell.titleLabel.text = model.dateFormatter.string(from: total.standardDay)
-                cell.incDecLabel.text = "\(total.incDec)명"
-            }
+            
+            cell.titleLabel.text = model.dateFormatter.string(from: model.dailyTotal.standardDay)
+            cell.incDecLabel.text = "\(model.dailyTotal.incDec)명"
+            
             return cell
             
         case .WeeklyTotalInfo:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeeklyTotalInfoCell", for: indexPath) as! WeeklyTotalInfoCollectionViewCell
+            let weeklyTotalInfos = model.weeklyInfoDict[CovidInfoCategory.total.rawValue]!.sorted { $0.standardDay < $1.standardDay }
+            let xAxis = weeklyTotalInfos.map { cell.dateFormatter.string(from: $0.standardDay) }
+            let yAxis = weeklyTotalInfos.map { $0.incDec }
+            
+            cell.setChart(xAxis: xAxis, yAxis: yAxis)
+            
             return cell
             
         case .DailyGubunInfo:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyGubunInfoCell", for: indexPath) as! DailyGubunInfoCollectionViewCell
+            
             cell.titleLabel.text = model.dailyInfos[indexPath.row].gubun
+            
             return cell
         }
     }

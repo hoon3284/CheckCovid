@@ -8,18 +8,23 @@
 import UIKit
 import WidgetKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
+    enum Section: Int, CaseIterable {
+        case DailyTotalInfo
+        case WeeklyTotalInfo
+        case DailyGubunInfo
+    }
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var model: DailyCovidInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.collectionViewLayout = createLayout()
         
         update()
     }
@@ -56,36 +61,109 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func updateView() {
-        guard let model = model else { return }
-
-        // 임시 view 설정
-        let total = model.dailyInfos.first { $0.gubunEn == CovidInfoCategory.total.rawValue }!
-        updateTotalInfoView(with: total)
+        collectionView.reloadData()
         
-        tableView.reloadData()
     }
     
-    func updateTotalInfoView(with total: CovidInfo) {
-        titleLabel.text! = model!.dateFormatter.string(from: total.standardDay)
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
     }
     
-    // MARK: DataSource
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let model = model else { return 0 }
-
-        return model.dailyInfos.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let model = model,
-              let cell = tableView.dequeueReusableCell(withIdentifier: "gubunCell") as? GubunTableViewCell
-        else {
-            fatalError("identifier에 해당하는 셀이 없습니다.")
+        if section == 2 {
+            return model.dailyInfos.count
+        } else {
+            return 1
         }
-        cell.titleLabel.text = model.dailyInfos[indexPath.row].gubun
-        
-        return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let model = model, let section = Section(rawValue: indexPath.section) else {
+            fatalError("해당하는 셀이 없습니다.")
+        }
+        switch section {
+        case .DailyTotalInfo:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyTotalInfoCell", for: indexPath) as! DailyTotalInfoCollectionViewCell
+            if let total = model.dailyInfos.first(where: { $0.gubunEn == CovidInfoCategory.total.rawValue }) {
+                cell.titleLabel.text = model.dateFormatter.string(from: total.standardDay)
+                cell.incDecLabel.text = "\(total.incDec)명"
+            }
+            return cell
+            
+        case .WeeklyTotalInfo:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeeklyTotalInfoCell", for: indexPath) as! WeeklyTotalInfoCollectionViewCell
+            return cell
+            
+        case .DailyGubunInfo:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DailyGubunInfoCell", for: indexPath) as! DailyGubunInfoCollectionViewCell
+            cell.titleLabel.text = model.dailyInfos[indexPath.row].gubun
+            return cell
+        }
+    }
+    
+    func createLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            guard let section = Section(rawValue: sectionIndex) else { return nil }
+            switch section {
+            case .DailyTotalInfo:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.2))
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
+                
+                let availableLayoutWidth = layoutEnvironment.container.effectiveContentSize.width
+                let groupWidth = availableLayoutWidth * 0.8
+                let remainingWidth = availableLayoutWidth - groupWidth
+                let halfOfRemainingWidth = remainingWidth / 2
+                
+                let section = NSCollectionLayoutSection(group: group)
+                
+                section.contentInsets = .init(top: 0, leading: halfOfRemainingWidth, bottom: 20, trailing: halfOfRemainingWidth)
+                
+                return section
+                
+            case .WeeklyTotalInfo:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.3))
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
+                
+                let availableLayoutWidth = layoutEnvironment.container.effectiveContentSize.width
+                let groupWidth = availableLayoutWidth * 0.8
+                let remainingWidth = availableLayoutWidth - groupWidth
+                let halfOfRemainingWidth = remainingWidth / 2
+                
+                let section = NSCollectionLayoutSection(group: group)
+                
+                section.contentInsets = .init(top: 0, leading: halfOfRemainingWidth, bottom: 20, trailing: halfOfRemainingWidth)
+                
+                return section
+                
+            case .DailyGubunInfo:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 8, trailing: 5)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.1))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
+                
+                let availableLayoutWidth = layoutEnvironment.container.effectiveContentSize.width
+                let groupWidth = availableLayoutWidth * 0.8
+                let remainingWidth = availableLayoutWidth - groupWidth
+                let halfOfRemainingWidth = remainingWidth / 2
+                
+                let section = NSCollectionLayoutSection(group: group)
+                
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: halfOfRemainingWidth, bottom: 40, trailing: halfOfRemainingWidth)
+                
+                return section
+            }
+        }
+        
+        return layout
+    }
 }
 

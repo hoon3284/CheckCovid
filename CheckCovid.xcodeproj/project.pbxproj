@@ -14,11 +14,13 @@
 		B596CD19276DD503006E449C /* CovidWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596CD18276DD503006E449C /* CovidWidget.swift */; };
 		B596CD1C276DD504006E449C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B596CD1B276DD504006E449C /* Assets.xcassets */; };
 		B596CD1E276DD504006E449C /* CovidWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B596CD1A276DD503006E449C /* CovidWidget.intentdefinition */; };
-		B5A1F831278469640004E222 /* GubunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A1F830278469640004E222 /* GubunTableViewCell.swift */; };
 		B5AB19A5276B9BAF001EEB1B /* CovidInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5AB19A4276B9BAF001EEB1B /* CovidInfo.plist */; };
 		B5AB19A7276B9F14001EEB1B /* CheckCovid+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB19A6276B9F14001EEB1B /* CheckCovid+Bundle.swift */; };
 		B5AB19B3276CC957001EEB1B /* CovidInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB19B2276CC957001EEB1B /* CovidInfoParser.swift */; };
 		B5AB19B5276CC96F001EEB1B /* CovidInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB19B4276CC96F001EEB1B /* CovidInfo.swift */; };
+		B5B709C62796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B709C52796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift */; };
+		B5B709C82796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B709C72796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift */; };
+		B5B709CA2799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B709C92799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift */; };
 		B5BDFD7C2765563900F55281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BDFD7B2765563900F55281 /* AppDelegate.swift */; };
 		B5BDFD7E2765563900F55281 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BDFD7D2765563900F55281 /* SceneDelegate.swift */; };
 		B5BDFD802765563900F55281 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BDFD7F2765563900F55281 /* ViewController.swift */; };
@@ -71,11 +73,13 @@
 		B596CD1A276DD503006E449C /* CovidWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CovidWidget.intentdefinition; sourceTree = "<group>"; };
 		B596CD1B276DD504006E449C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B596CD1D276DD504006E449C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5A1F830278469640004E222 /* GubunTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GubunTableViewCell.swift; sourceTree = "<group>"; };
 		B5AB19A4276B9BAF001EEB1B /* CovidInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CovidInfo.plist; sourceTree = "<group>"; };
 		B5AB19A6276B9F14001EEB1B /* CheckCovid+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CheckCovid+Bundle.swift"; sourceTree = "<group>"; };
 		B5AB19B2276CC957001EEB1B /* CovidInfoParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidInfoParser.swift; sourceTree = "<group>"; };
 		B5AB19B4276CC96F001EEB1B /* CovidInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidInfo.swift; sourceTree = "<group>"; };
+		B5B709C52796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTotalInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		B5B709C72796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTotalInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		B5B709C92799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGubunInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5BDFD782765563900F55281 /* CheckCovid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckCovid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5BDFD7B2765563900F55281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5BDFD7D2765563900F55281 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,7 +202,9 @@
 			isa = PBXGroup;
 			children = (
 				B5BDFD7F2765563900F55281 /* ViewController.swift */,
-				B5A1F830278469640004E222 /* GubunTableViewCell.swift */,
+				B5B709C52796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift */,
+				B5B709C72796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift */,
+				B5B709C92799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -385,11 +391,13 @@
 				B5AB19B3276CC957001EEB1B /* CovidInfoParser.swift in Sources */,
 				B5AB19B5276CC96F001EEB1B /* CovidInfo.swift in Sources */,
 				B5BDFD802765563900F55281 /* ViewController.swift in Sources */,
+				B5B709C62796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift in Sources */,
 				B5AB19A7276B9F14001EEB1B /* CheckCovid+Bundle.swift in Sources */,
 				B5F6AE9527721DC7002D2C05 /* CheckCovid+UserDefaults.swift in Sources */,
+				B5B709CA2799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift in Sources */,
 				B5141C952784E2C300482405 /* APIError.swift in Sources */,
 				B5BDFD7C2765563900F55281 /* AppDelegate.swift in Sources */,
-				B5A1F831278469640004E222 /* GubunTableViewCell.swift in Sources */,
+				B5B709C82796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift in Sources */,
 				B5E8210927744C1200DFE4A3 /* APIRequest.swift in Sources */,
 				B5D13B37277CE05C00C50DAB /* DailyCovidInfo.swift in Sources */,
 				B5E8210B277473B000DFE4A3 /* APIService.swift in Sources */,

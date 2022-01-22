@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,82 +15,135 @@
             <objects>
                 <viewController id="BYZ-38-t0r" userLabel="Daily Covid status" customClass="ViewController" customModule="CheckCovid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ppn-bR-wHo">
-                                <rect key="frame" x="20" y="64" width="374" height="60"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0월 0일" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukD-51-SA1">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="확진자 합계" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLL-YI-eup">
-                                        <rect key="frame" x="0.0" y="30" width="374" height="30"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1Tf-7P-R03">
-                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VmU-JR-DFx">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="gubunCell" rowHeight="66" id="tEA-el-4N4" customClass="GubunTableViewCell" customModule="CheckCovid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="66"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tEA-el-4N4" id="3uU-qQ-0vg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xl5-bk-0zC">
+                                    <size key="itemSize" width="280" height="120"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DailyTotalInfoCell" id="gun-Ho-sg7" customClass="DailyTotalInfoCollectionViewCell" customModule="CheckCovid" customModuleProvider="target">
+                                        <rect key="frame" x="45" y="0.0" width="300" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hdy-pL-C2J">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RT-hk-Q8K">
-                                                    <rect key="frame" x="170.5" y="14.5" width="73.5" height="37"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0wK-nA-190">
+                                                    <rect key="frame" x="8" y="8" width="284" height="124"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Title Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnS-w7-hB3">
+                                                            <rect key="frame" x="86.666666666666657" y="0.0" width="110.66666666666666" height="41.333333333333336"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="총 확진자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4F-Ew-cag">
+                                                            <rect key="frame" x="96" y="41.333333333333329" width="92.333333333333314" height="41.333333333333329"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gq3-4a-jwY">
+                                                            <rect key="frame" x="112.66666666666669" y="82.666666666666671" width="59" height="41.333333333333329"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                            <color key="textColor" systemColor="systemRedColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="0wK-nA-190" secondAttribute="bottom" constant="8" id="3vV-3j-yUA"/>
+                                                <constraint firstItem="0wK-nA-190" firstAttribute="leading" secondItem="hdy-pL-C2J" secondAttribute="leading" constant="8" id="4gw-Pr-R0u"/>
+                                                <constraint firstAttribute="trailing" secondItem="0wK-nA-190" secondAttribute="trailing" constant="8" id="Ery-BW-oZm"/>
+                                                <constraint firstItem="0wK-nA-190" firstAttribute="top" secondItem="hdy-pL-C2J" secondAttribute="top" constant="8" id="Xqf-2U-Z4b"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="300" height="140"/>
+                                        <connections>
+                                            <outlet property="incDecLabel" destination="Gq3-4a-jwY" id="QxG-wz-MpI"/>
+                                            <outlet property="titleLabel" destination="WnS-w7-hB3" id="d1e-Rj-Mvu"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="WeeklyTotalInfoCell" id="icu-di-xie" customClass="WeeklyTotalInfoCollectionViewCell" customModule="CheckCovid" customModuleProvider="target">
+                                        <rect key="frame" x="45" y="150" width="300" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Vuv-Kg-8MJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbi-rl-kVK" customClass="BarChartView" customModule="Charts">
+                                                    <rect key="frame" x="8" y="8" width="284" height="124"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Zbi-rl-kVK" secondAttribute="trailing" constant="8" id="KR5-2k-Hk4"/>
+                                                <constraint firstItem="Zbi-rl-kVK" firstAttribute="top" secondItem="Vuv-Kg-8MJ" secondAttribute="top" constant="8" id="N45-YI-sNa"/>
+                                                <constraint firstItem="Zbi-rl-kVK" firstAttribute="leading" secondItem="Vuv-Kg-8MJ" secondAttribute="leading" constant="8" id="Tzu-1x-Jec"/>
+                                                <constraint firstAttribute="bottom" secondItem="Zbi-rl-kVK" secondAttribute="bottom" constant="8" id="m01-2w-DI5"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="300" height="140"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="DailyGubunInfoCell" id="pmC-9R-VtM" customClass="DailyGubunInfoCollectionViewCell" customModule="CheckCovid" customModuleProvider="target">
+                                        <rect key="frame" x="135" y="300" width="120" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Yxv-oc-T2m">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gay-Pd-mKb">
+                                                    <rect key="frame" x="39.333333333333329" y="50" width="41.333333333333329" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="1RT-hk-Q8K" firstAttribute="centerX" secondItem="3uU-qQ-0vg" secondAttribute="centerX" id="0nw-hi-CJR"/>
-                                                <constraint firstItem="1RT-hk-Q8K" firstAttribute="centerY" secondItem="3uU-qQ-0vg" secondAttribute="centerY" id="hKg-al-cqX"/>
+                                                <constraint firstItem="gay-Pd-mKb" firstAttribute="centerX" secondItem="Yxv-oc-T2m" secondAttribute="centerX" id="JTl-XW-at4"/>
+                                                <constraint firstItem="gay-Pd-mKb" firstAttribute="centerY" secondItem="Yxv-oc-T2m" secondAttribute="centerY" id="KyV-hg-bZM"/>
                                             </constraints>
-                                        </tableViewCellContentView>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="120" height="120"/>
                                         <connections>
-                                            <outlet property="titleLabel" destination="1RT-hk-Q8K" id="GOI-VO-gRj"/>
+                                            <outlet property="titleLabel" destination="gay-Pd-mKb" id="zsN-k6-Jcz"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1Tf-7P-R03" secondAttribute="bottom" id="2pG-Tb-hSB"/>
-                            <constraint firstItem="1Tf-7P-R03" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4fj-zF-kph"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ppn-bR-wHo" secondAttribute="trailing" constant="20" id="9BN-PU-6qd"/>
-                            <constraint firstItem="ppn-bR-wHo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="DxF-aQ-fX3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1Tf-7P-R03" secondAttribute="trailing" id="QTp-hI-kXb"/>
-                            <constraint firstItem="ppn-bR-wHo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="fmC-Pa-Iq0"/>
-                            <constraint firstItem="1Tf-7P-R03" firstAttribute="top" secondItem="ppn-bR-wHo" secondAttribute="bottom" constant="20" id="m7A-1M-ykB"/>
+                            <constraint firstItem="VmU-JR-DFx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BFl-U3-U3H"/>
+                            <constraint firstItem="VmU-JR-DFx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="KbX-7G-SO0"/>
+                            <constraint firstItem="VmU-JR-DFx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kVy-wT-odz"/>
+                            <constraint firstAttribute="bottom" secondItem="VmU-JR-DFx" secondAttribute="bottom" id="oGF-dv-gjN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="오늘의 코로나 현황" largeTitleDisplayMode="always" id="tFO-Ki-1Hp"/>
                     <connections>
-                        <outlet property="tableView" destination="1Tf-7P-R03" id="4ny-kj-fZB"/>
-                        <outlet property="titleLabel" destination="ukD-51-SA1" id="lnt-sH-7yC"/>
+                        <outlet property="collectionView" destination="VmU-JR-DFx" id="iUk-AD-ke3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="109" y="-593"/>
+            <point key="canvasLocation" x="107.69230769230769" y="-593.60189573459718"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

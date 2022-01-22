@@ -1,15 +1,13 @@
 //
-//  DailyTotalInfoCollectionViewCell.swift
+//  BaseCollectionViewCell.swift
 //  CheckCovid
 //
-//  Created by wickedRun on 2022/01/18.
+//  Created by wickedRun on 2022/01/22.
 //
 
 import UIKit
 
-class DailyTotalInfoCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var incDecLabel: UILabel!
+class BaseCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         let background = UIView(frame: bounds)

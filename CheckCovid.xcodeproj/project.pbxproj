@@ -21,6 +21,7 @@
 		B5B709C62796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B709C52796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift */; };
 		B5B709C82796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B709C72796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift */; };
 		B5B709CA2799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B709C92799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift */; };
+		B5B709CC279B854800B615FE /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B709CB279B854800B615FE /* BaseCollectionViewCell.swift */; };
 		B5BDFD7C2765563900F55281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BDFD7B2765563900F55281 /* AppDelegate.swift */; };
 		B5BDFD7E2765563900F55281 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BDFD7D2765563900F55281 /* SceneDelegate.swift */; };
 		B5BDFD802765563900F55281 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BDFD7F2765563900F55281 /* ViewController.swift */; };
@@ -80,6 +81,7 @@
 		B5B709C52796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTotalInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5B709C72796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTotalInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5B709C92799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGubunInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		B5B709CB279B854800B615FE /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5BDFD782765563900F55281 /* CheckCovid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckCovid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5BDFD7B2765563900F55281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5BDFD7D2765563900F55281 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +164,17 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		B5B709CD279B85C400B615FE /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B5B709C52796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift */,
+				B5B709C72796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift */,
+				B5B709C92799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift */,
+				B5B709CB279B854800B615FE /* BaseCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		B5BDFD6F2765563900F55281 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +203,7 @@
 				B5BDFD812765563900F55281 /* Main.storyboard */,
 				B5AB19AF276CC858001EEB1B /* Model */,
 				B5D13B3A277CE82F00C50DAB /* Controller */,
+				B5B709CD279B85C400B615FE /* Cells */,
 				B5AB19B1276CC89F001EEB1B /* Services */,
 				B5AB19B0276CC87D001EEB1B /* Supporting Files */,
 				B5BDFD892765563A00F55281 /* Info.plist */,
@@ -202,9 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				B5BDFD7F2765563900F55281 /* ViewController.swift */,
-				B5B709C52796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift */,
-				B5B709C72796C35100B615FE /* WeeklyTotalInfoCollectionViewCell.swift */,
-				B5B709C92799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -393,6 +404,7 @@
 				B5BDFD802765563900F55281 /* ViewController.swift in Sources */,
 				B5B709C62796BF6500B615FE /* DailyTotalInfoCollectionViewCell.swift in Sources */,
 				B5AB19A7276B9F14001EEB1B /* CheckCovid+Bundle.swift in Sources */,
+				B5B709CC279B854800B615FE /* BaseCollectionViewCell.swift in Sources */,
 				B5F6AE9527721DC7002D2C05 /* CheckCovid+UserDefaults.swift in Sources */,
 				B5B709CA2799AFFB00B615FE /* DailyGubunInfoCollectionViewCell.swift in Sources */,
 				B5141C952784E2C300482405 /* APIError.swift in Sources */,

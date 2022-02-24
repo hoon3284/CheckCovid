@@ -61,8 +61,8 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
             crtElementType = .gubunEn
         case XMLKey.incDec.rawValue:
             crtElementType = .incDec
-        case XMLKey.isolClearCnt.rawValue:
-            crtElementType = .isolClearCnt
+//        case XMLKey.isolClearCnt.rawValue:
+//            crtElementType = .isolClearCnt
         case XMLKey.qurRate.rawValue:
             crtElementType = .qurRate
         case XMLKey.standardDay.rawValue:
@@ -110,7 +110,7 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
                   let gubun = xmlDictionary[XMLKey.gubun.rawValue],
                   let gubunEn = xmlDictionary[XMLKey.gubunEn.rawValue],
                   let incDec = xmlDictionary[XMLKey.incDec.rawValue],
-                  let isolClearCnt = xmlDictionary[XMLKey.isolClearCnt.rawValue],
+//                  let isolClearCnt = xmlDictionary[XMLKey.isolClearCnt.rawValue],
                   let qurRate = xmlDictionary[XMLKey.qurRate.rawValue],
                   let defCnt = xmlDictionary[XMLKey.defCnt.rawValue],
                   let standardDay = xmlDictionary[XMLKey.standardDay.rawValue],
@@ -126,7 +126,7 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
                 print("failed to formatting date")
                 return
             }
-            let item = CovidInfo(seq: Int(seq)!, createDt: createDate, deathCnt: Int(deathCnt)!, gubun: gubun, gubunEn: gubunEn, incDec: Int(incDec)!, isolClearCnt: Int(isolClearCnt)!, qurRate: Int(qurRate), standardDay: standardDate, defCnt: Int(defCnt)!, overFlowCnt: Int(overFlowCnt)!, localOccCnt: Int(localOccCnt)!)
+            let item = CovidInfo(seq: Int(seq)!, createDt: createDate, deathCnt: Int(deathCnt)!, gubun: gubun, gubunEn: gubunEn, incDec: Int(incDec)!, qurRate: Int(qurRate), standardDay: standardDate, defCnt: Int(defCnt)!, overFlowCnt: Int(overFlowCnt)!, localOccCnt: Int(localOccCnt)!)
             
             dict?[item.gubunEn, default: [CovidInfo]()].append(item)
             items?.append(item)
@@ -145,7 +145,7 @@ class CovidInfoParser: NSObject, XMLParserDelegate {
         case gubun                  // 구분 한글
         case gubunEn                // 구분 영어
         case incDec                 // 전일대비 증감 수
-        case isolClearCnt           // 격리 해제 수
+//        case isolClearCnt           // 격리 해제 수
         case qurRate                // 10만명당 발생률
         case standardDay = "stdDay" // 기준일시
         case defCnt                 // 확진자 수

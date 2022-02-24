@@ -14,7 +14,7 @@ struct CovidInfo: CustomStringConvertible, Codable, Equatable {
     var gubun: String       // 구분 한글
     var gubunEn: String       // 구분 영어
     var incDec: Int         // 전일대비 증감 수
-    var isolClearCnt: Int   // 격리 해제 수
+//    var isolClearCnt: Int   // 격리 해제 수
     var qurRate: Int?       // 10만명당 발생률
     var standardDay: Date   // 기준일시
     var defCnt: Int         // 확진자 수
